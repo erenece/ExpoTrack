@@ -1,0 +1,62 @@
+@model IEnumerable<ExpoTrack.Models.Fuarlar>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Fuarlar</h1>
+
+<p>
+    <a asp-action="Create">Oluþtur</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Fuar Adý</th>
+            <th>Baþlangýç Tarihi</th>
+            <th>Bitiþ Tarihi</th>
+            <th>Þehir</th>
+            <th>Yer</th>
+            <th>Ýþlemler</th>
+        </tr>
+    </thead>
+
+    
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                    <a asp-controller="Fuarlar" asp-action="Katilimcilar" asp-route-id="@item.FuarId">
+                        @item.Adi
+                    </a>
+
+
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BaslangicTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BitisTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sehir)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Yer)
+            </td>
+
+            <td>
+               @if (Context.Session.GetString("Rol") == "Admin")
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.FuarId">Düzenle</a>
+                        <a asp-action="Details" asp-route-id="@item.FuarId">Detay</a>
+                        <a asp-action="Delete" asp-route-id="@item.FuarId">Sil</a>
+
+                    }
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

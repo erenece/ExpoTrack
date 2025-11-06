@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ExpoTrack</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ExpoTrack.styles.css" asp-append-version="true" />
+
+    <!-- Font Awesome ikonlar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+    <!-- Üst Menü -->
+    <header class="bg-primary text-white p-3 mb-4">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <!-- Sol Logo -->
+            <a class="navbar-brand fw-bold text-white fs-3" asp-controller="Home" asp-action="Index">ExpoTrack</a>
+
+            <!-- Sağ Profil Menüsü -->
+            <div class="d-flex align-items-center gap-3">
+                <div class="dropdown">
+                    <a class="btn btn-light text-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fa-solid fa-user"></i> Admin
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" asp-controller="Kullanicilar" asp-action="Index">Kullanıcılar</a></li>
+                        <li><a class="dropdown-item text-danger" asp-controller="Account" asp-action="Logout">Çıkış Yap</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="d-flex">
+        <!-- Sol Sidebar -->
+        <nav class="flex-column bg-light p-3" style="width: 200px; min-height: 100vh;">
+            <a class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "Fuarlar" ? "active" : "")"
+               asp-controller="Fuarlar" asp-action="Index">
+                <i class="fa-solid fa-calendar-days"></i> Fuarlar
+            </a>
+            <a class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "Firmalar" ? "active" : "")"
+               asp-controller="Firmalar" asp-action="Index">
+                <i class="fa-solid fa-building"></i> Firmalar
+            </a>
+            <a class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "MailBekleyen" ? "active" : "")"
+               asp-controller="Firmalar" asp-action="MailBekleyen">
+                <i class="fa-solid fa-envelope-open-text"></i> Mail Bekleyen
+            </a>
+            <a class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "TeklifBekleyen" ? "active" : "")"
+               asp-controller="Firmalar" asp-action="TeklifBekleyen">
+                <i class="fa-solid fa-file-lines"></i> Teklif Bekleyen
+            </a>
+            <a class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Sozlesme" ? "active" : "")"
+               asp-controller="Firmalar" asp-action="Sozlesme">
+                <i class="fa-solid fa-file-contract"></i> Sözleşme
+            </a>
+        </nav>
+
+        <!-- İçerik Alanı -->
+        <div class="flex-grow-1 p-4">
+            @RenderBody()
+        </div>
+    </div>
+
+    <!-- Alt Bilgi -->
+    <footer class="border-top footer text-muted mt-4">
+        <div class="container">
+            &copy; 2025 - ExpoTrack - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

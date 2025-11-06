@@ -1,0 +1,60 @@
+@model ExpoTrack.Models.FuarEditViewModel
+
+
+@{
+    ViewData["Title"] = "DÜZENLE";
+}
+
+<h1>Düzenle</h1>
+
+<h4>Fuarlar</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Adi" class="control-label"></label>
+                <input asp-for="Adi" class="form-control" />
+                <span asp-validation-for="Adi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BaslangicTarihi" class="control-label"></label>
+                <input asp-for="BaslangicTarihi" class="form-control" />
+                <span asp-validation-for="BaslangicTarihi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BitisTarihi" class="control-label"></label>
+                <input asp-for="BitisTarihi" class="form-control" />
+                <span asp-validation-for="BitisTarihi" class="text-danger"></span>
+            </div>
+            
+                <div class="form-group">
+                    <label asp-for="Sehir" class="control-label"></label>
+                    <select asp-for="Sehir" asp-items="Model.Sehirler" class="form-control">
+                        <option value="">-- Þehir Seçin --</option>
+                    </select>
+
+                </div>
+
+                
+            <div class="form-group">
+                <label asp-for="Yer" class="control-label"></label>
+                <input asp-for="Yer" class="form-control" />
+                <span asp-validation-for="Yer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Listeye Geri Dön</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

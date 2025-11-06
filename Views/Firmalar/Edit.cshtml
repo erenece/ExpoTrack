@@ -1,0 +1,82 @@
+@model ExpoTrack.Models.FirmaEditViewModel
+
+
+@{
+    ViewData["Title"] = "DÜZENLE";
+}
+
+<h1>Düzenle</h1>
+
+<h4>Firmalar</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="FirmaAdi" class="control-label"></label>
+                <input asp-for="FirmaAdi" class="form-control" />
+                <span asp-validation-for="FirmaAdi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefon" class="control-label"></label>
+                <input asp-for="Telefon" class="form-control" />
+                <span asp-validation-for="Telefon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WebSitesi" class="control-label"></label>
+                <input asp-for="WebSitesi" class="form-control" />
+                <span asp-validation-for="WebSitesi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Yetkili" class="control-label"></label>
+                <input asp-for="Yetkili" class="form-control" />
+                <span asp-validation-for="Yetkili" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsDurumu" class="control-label"></label>
+                <select asp-for="IsDurumu" class="form-control">
+                    <option value="">-- Seçiniz --</option>
+                    <option>Ulaþýlamadý</option>
+                    <option>Beklemede</option>
+                    <option>Mail Gönder</option>
+                    <option>Teklif Gönder</option>
+                    <option>Sözleþme Gönder</option>
+                    <option>Ýptal</option>
+                </select>
+
+                <span asp-validation-for="IsDurumu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecilenFuarlar" class="control-label">Katýldýðý Fuarlardan Seç</label>
+                <select asp-for="SecilenFuarlar" asp-items="Model.TumFuarlar" class="form-control" multiple size="6"></select>
+                <span asp-validation-for="SecilenFuarlar" class="text-danger"></span>
+            </div>
+
+
+
+
+
+              
+
+
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Listeye Geri Dön</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,33 @@
+﻿@model List<ExpoTrack.Models.Firmalar>
+
+@{
+    ViewData["Title"] = "Katılımcı Firmalar";
+}
+
+<h2>Katılımcı Firmalar</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Firma Adı</th>
+            <th>Telefon</th>
+            <th>Email</th>
+            <th>Web Sitesi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var firma in Model)
+        {
+            <tr>
+                <td>@firma.FirmaAdi</td>
+                <td>@firma.Telefon</td>
+                <td>@firma.Email</td>
+                <td>@firma.WebSitesi</td>
+                <td>
+                    <a asp-controller="Firmalar" asp-action="Details" asp-route-id="@firma.Id" class="btn btn-sm btn-outline-primary">Detay</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

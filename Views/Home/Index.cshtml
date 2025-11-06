@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center text-center">
+        <div class="col-lg-8">
+            <h1 class="display-4 fw-bold mb-4 text-primary">ExpoTrack'e Hoş Geldiniz 🎉</h1>
+            <p class="lead text-secondary">
+                Fuar ve firma bilgilerinizi kolayca yönetin. Soldaki menüyü kullanarak fuarları, firmaları ve işlem durumlarını takip edebilirsiniz.
+            </p>
+
+            <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
+                <a class="btn btn-outline-primary btn-lg" asp-controller="Firmalar" asp-action="Index">
+                    <i class="fas fa-building"></i> Firmaları Gör
+                </a>
+                <a class="btn btn-outline-success btn-lg" asp-controller="Fuarlar" asp-action="Index">
+                    <i class="fas fa-calendar-alt"></i> Fuarları Gör
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

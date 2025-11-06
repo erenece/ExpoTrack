@@ -1,0 +1,86 @@
+@model IEnumerable<ExpoTrack.Models.Firmalar>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Firmalar</h1>
+
+    <a asp-controller="Firmalar" asp-action="Import" class="btn btn-primary">Excel'den Ýçe Aktar</a>
+    <a asp-controller="ExcelExport" asp-action="ExportFirmalarToExcel" class="btn btn-success">
+        Excel’e Aktar
+    </a>
+
+
+
+
+<p>
+    <a asp-action="Create">Oluþtur</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Firma Adý</th>
+            <th>Telefon</th>
+            <th>E mail</th>
+            <th>Web Sitesi</th>
+            <th>Yetkili</th>
+            <th>Ýþ Durumu</th>
+            <th>Katýldýðý Fuarlar</th>
+            
+
+
+    </thead>
+
+    
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirmaAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WebSitesi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Yetkili)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsDurumu)
+                </td>
+
+                <td>
+                    @if (item.FuarIliskileri != null && item.FuarIliskileri.Any())
+                    {
+                        @string.Join(", ", item.FuarIliskileri.Select(f => f.Fuar.Adi))
+                    }
+                    else
+                    {
+                        <span class="text-muted">Katýlým yok</span>
+                    }
+                </td>
+
+
+
+
+            <td>
+                    @if (Context.Session.GetString("Rol") == "Admin")
+                    {
+
+                    <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> 
+                    <a asp-action="Details" asp-route-id="@item.Id">Detay</a> 
+                    <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+
+                    }
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
